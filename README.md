@@ -5,6 +5,10 @@
 
 ![image](https://github.com/Frank-Star-fn/HollowKnight_auto_script/blob/main/HollowKnight_auto_script/resources/%E6%8A%A4%E7%AC%A6.png)
 
+键位配置如下：
+
+![image](https://github.com/Frank-Star-fn/HollowKnight_auto_script/blob/main/HollowKnight_auto_script/resources//keymaps.png)
+
 依赖包：
 pykeyboard、pyautogui
 
