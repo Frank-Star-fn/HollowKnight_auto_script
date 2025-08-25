@@ -10,7 +10,7 @@
 ![image](https://github.com/Frank-Star-fn/HollowKnight_auto_script/blob/main/HollowKnight_auto_script/resources//keymaps.png)
 
 依赖包：
-pykeyboard、pyautogui
+pykeyboard==0.1.2、pyautogui==0.9.54
 
 目前可以通关神居一门，[演示视频](https://www.bilibili.com/video/BV14Q4y1W7c3/?spm_id_from=333.999.0.0&vd_source=c9e43e97a527acb90f53a8a86908ef27)
 
