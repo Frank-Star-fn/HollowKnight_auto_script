@@ -9,8 +9,14 @@
 
 ![image](https://github.com/Frank-Star-fn/HollowKnight_auto_script/blob/main/HollowKnight_auto_script/resources//keymaps.png)
 
-依赖包：
-pykeyboard==0.1.2、pyautogui==0.9.54
+环境依赖包：
+```
+pykeyboard==0.1.2
+PyAutoGUI==0.9.54
+opencv-python==4.12.0.88
+PyUserInput==0.1.10
+pywin32==305.1
+```
 
 屏幕分辨率：1280*720
 
