@@ -53,58 +53,137 @@ def dash():
     time.sleep(0.2)         
     k.release_key('L')  # 释放
 
+def enter_gate():
+    k.press_key('W')  # 按下
+    time.sleep(0.2)         
+    k.release_key('W')  # 释放
+    time.sleep(1)
+    k.press_key('W')  # 按下
+    time.sleep(0.2)         
+    k.release_key('W')  # 释放
+    time.sleep(0.8)
+    k.press_key('K')  # 按下
+    time.sleep(0.1)         
+    k.release_key('K')  # 释放
+
+def enter_single_boss():
+    k.press_key('W')  # 按下
+    time.sleep(0.1)         
+    k.release_key('W')  # 释放
+    time.sleep(0.6)
+    k.press_key('K')  # 按下
+    time.sleep(0.1)         
+    k.release_key('K')  # 释放
+    
 def observe_fake_knight():
-    is_fake_knight = pyautogui.locateOnScreen('./locator/fake_knight.png',
-                                           confidence=0.8)        
-    is_fake_knight2 = pyautogui.locateOnScreen('./locator/fake_knight_2.png',
-                                           confidence=0.8)       
-        
-    if is_fake_knight or is_fake_knight2: # 识别到假骑士
-        return True
+    conf_rate = 0.7
+    try:
+        is_fake_knight = pyautogui.locateOnScreen('./locator/fake_knight.png',
+                                            confidence=conf_rate) 
+        if is_fake_knight: # 识别到假骑士
+            return True
+    except:
+        pass
+    try:
+        is_fake_knight2 = pyautogui.locateOnScreen('./locator/fake_knight_2.png',
+                                            confidence=conf_rate)  
+        if is_fake_knight2: # 识别到假骑士
+            return True
+    except:
+        pass
+    print("can't find fake_knight") 
     return False
+
 
 def observe_fake_knight_lie_to_left():
-    is_lie = pyautogui.locateOnScreen('./locator/fake_knight_lie.png',
-                                           confidence=0.8)  
-    is_lie2 = pyautogui.locateOnScreen('./locator/fake_knight_lie_2.png',
-                                           confidence=0.8)        
-    if is_lie or is_lie2: # 识别到假骑士被击倒
-        return True
+    conf_rate = 0.8
+    try:
+        is_lie = pyautogui.locateOnScreen('./locator/fake_knight_lie.png',
+                                            confidence=conf_rate)  
+        if is_lie:
+            return True
+    except:
+        pass
+    try:
+        is_lie2 = pyautogui.locateOnScreen('./locator/fake_knight_lie_2.png',
+                                            confidence=conf_rate) 
+        if is_lie2:
+            return True
+    except:
+        pass
+    print("can't find lie_to_left")     
     return False
+
 
 def observe_moss():
-    is_moss = pyautogui.locateOnScreen('./locator/moss.png',
-                                           confidence=0.8) 
-    is_moss2 = pyautogui.locateOnScreen('./locator/moss_2.png',
-                                           confidence=0.8) 
-    if is_moss or is_moss2: # 识别到大型苔藓冲锋者
-        return True
+    conf_rate = 0.75
+    try:
+        is_observed = pyautogui.locateOnScreen('./locator/moss.png',
+                                            confidence=conf_rate)  
+        if is_observed:
+            return True
+    except:
+        pass
+    try:
+        is_observed = pyautogui.locateOnScreen('./locator/moss_2.png',
+                                            confidence=conf_rate)  
+        if is_observed:
+            return True
+    except:
+        pass
+    print("can't find")     
     return False
+
 
 def observe_soul_warrior():
-    is_soul_warrior = pyautogui.locateOnScreen('./locator/soul_warrior.png',
-                                           confidence=0.8)
-    is_soul_warrior2 = pyautogui.locateOnScreen('./locator/soul_warrior_2.png',
-                                           confidence=0.8)
-    
-    if is_soul_warrior or is_soul_warrior2: # 识别到灵魂战士
-        return True
+    conf_rate = 0.75
+    try:
+        is_observed = pyautogui.locateOnScreen('./locator/soul_warrior.png',
+                                            confidence=conf_rate)  
+        if is_observed:
+            return True
+    except:
+        pass
+    try:
+        is_observed = pyautogui.locateOnScreen('./locator/soul_warrior_2.png',
+                                            confidence=conf_rate)  
+        if is_observed:
+            return True
+    except:
+        pass
+    print("can't find")     
     return False
+
 
 def observe_mawlek():
-    is_mawlek = pyautogui.locateOnScreen('./locator/mawlek.png',
-                                           confidence=0.8)   
-    is_mawlek_2 = pyautogui.locateOnScreen('./locator/mawlek_2.png',
-                                           confidence=0.8)  
-    if is_mawlek or is_mawlek_2: # 识别到毛里克
-        return True
+    conf_rate = 0.75
+    try:
+        is_observed = pyautogui.locateOnScreen('./locator/mawlek.png',
+                                            confidence=conf_rate)  
+        if is_observed:
+            return True
+    except:
+        pass
+    try:
+        is_observed = pyautogui.locateOnScreen('./locator/mawlek_2.png',
+                                            confidence=conf_rate)  
+        if is_observed:
+            return True
+    except:
+        pass
+    print("can't find")     
     return False
 
+
 def observe_end_gate():
-    is_end = pyautogui.locateOnScreen('./locator/gate_1_outside.png',
-                                           confidence=0.85)       
-    if is_end: # 识别战斗结束
-        return True
+    try:
+        is_end = pyautogui.locateOnScreen('./locator/gate_1_outside.png',
+                                            confidence=0.75)       
+        if is_end: # 识别战斗结束
+            return True
+        return False
+    except:
+        print("can't find")
     return False
 
 
@@ -127,16 +206,18 @@ def _find_window():
 
         geo = None
         conf = 0.96
+        print("conf =", conf)
         while geo is None:
-            geo = pyautogui.locateOnScreen('./locator/geo.png',
+            try:
+                geo = pyautogui.locateOnScreen('./locator/geo.png',
                                            confidence=conf)
+            except:
+                print("can't find geo pic")
+
             conf = max(0.92, conf * 0.99)
             time.sleep(0.1)
-            #
-            print("conf =", conf)
-        #
-        print("geo =", geo)
-
+            print("conf =", conf) #
+        print("geo =", geo) #
         loc = {
             'left': geo.left - 36,
             'top': geo.top - 97,
@@ -145,29 +226,8 @@ def _find_window():
         }
         return loc
 
-def enter_gate():
-    k.press_key('W')  # 按下
-    time.sleep(0.2)         
-    k.release_key('W')  # 释放
-    time.sleep(1)
-    k.press_key('W')  # 按下
-    time.sleep(0.2)         
-    k.release_key('W')  # 释放
-    time.sleep(0.8)
-    k.press_key('K')  # 按下
-    time.sleep(0.1)         
-    k.release_key('K')  # 释放
 
-def enter_single_boss():
-    k.press_key('W')  # 按下
-    time.sleep(0.1)         
-    k.release_key('W')  # 释放
-    time.sleep(0.6)
-    k.press_key('K')  # 按下
-    time.sleep(0.1)         
-    k.release_key('K')  # 释放
-
-def main():    
+def main():   
     loc = _find_window()
 
     # 进入游戏
@@ -182,8 +242,6 @@ def main():
         attack2()
         fast_deep_heal() # 回血
     
-
-    #
     print("打假骑士")
     num = 5000 # 循环次数，足够大
     num2= 70
@@ -191,6 +249,7 @@ def main():
         if observe_moss():
             break
         if observe_fake_knight_lie_to_left():
+            print("发现假骑士被朝左击倒") # 
             keep_right() # 一直往右
             for j in range(num2):
                 print("j =",j) # 
@@ -203,8 +262,6 @@ def main():
         move_left() # 往左
         dash()
         
-
-    #
     print("打大型苔藓冲锋者")
     num = 10000 # 循环次数，足够大
     for i in range(num):
@@ -214,7 +271,6 @@ def main():
         attack2()
         fast_deep_heal() # 回血
 
-    #
     print("打灵魂战士")
     keep_right() # 一直往右
     num = 2000 # 循环次数
@@ -236,11 +292,8 @@ def main():
         print("i =",i) # 
         attack2()
         fast_deep_heal() # 回血
-
     #
     print("end")
 
 if __name__ == '__main__':
     main()
-
-
